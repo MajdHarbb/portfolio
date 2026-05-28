@@ -14,12 +14,12 @@
 
     <style>
       :root {
-        --primary: #818cf8;
-        --primary-rgb: 129, 140, 248;
-        --bg: #08080d;
-        --text: #e2e8f0;
-        --muted: #7a7f99;
-        --border: #1f1f2e;
+        --primary: #dc7e5f;
+        --primary-rgb: 220, 126, 95;
+        --bg: #1a0e1f;
+        --text: #f0e4d0;
+        --muted: #b0a090;
+        --border: #2e1f33;
         --font-display: "Space Mono", monospace;
         --font-body: "Inter", sans-serif;
         --font-mono: "JetBrains Mono", monospace;
@@ -191,12 +191,12 @@
         align-items: center;
         gap: 0.8rem;
       }
-      .hero-eyebrow::before {
+      /* .hero-eyebrow::before {
         content: "";
         width: 30px;
         height: 1px;
         background: var(--primary);
-      }
+      } */
       .hero h1 {
         font-family: var(--font-display);
         font-size: clamp(3rem, 10vw, 9rem);
@@ -513,17 +513,16 @@
           transparent 60%
         );
       }
-      .project-shape {
+      .project-image {
         position: absolute;
-        width: 70%;
-        height: 70%;
-        top: 15%;
-        left: 50%;
-        transform: translate(-50%, 0);
+        inset: 0;
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
         transition: transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
       }
-      .project:hover .project-shape {
-        transform: translate(-50%, 0) scale(1.08) rotate(6deg);
+      .project:hover .project-image {
+        transform: scale(1.05);
       }
       .project-info {
         position: absolute;
@@ -534,8 +533,9 @@
         z-index: 2;
         background: linear-gradient(
           to top,
-          rgba(10, 10, 10, 0.95),
-          transparent
+          rgba(10, 10, 10, 0.98) 0%,
+          rgba(10, 10, 10, 0.85) 50%,
+          transparent 100%
         );
       }
       .project-tag {
@@ -720,6 +720,10 @@
       }
 
       /* ============ COLOR PICKER PANEL ============ */
+      .picker,
+      .picker-toggle {
+        display: none !important;
+      }
       .picker {
         position: fixed;
         top: 50%;
@@ -871,8 +875,8 @@
         opacity: 1;
         background-image: repeating-linear-gradient(
           0deg,
-          rgba(129, 140, 248, 0.03) 0px,
-          rgba(129, 140, 248, 0.03) 1px,
+          rgba(220, 126, 95, 0.03) 0px,
+          rgba(220, 126, 95, 0.03) 1px,
           transparent 1px,
           transparent 3px
         );
@@ -967,7 +971,7 @@
       /* Subtle glow on primary text in terminal mode */
       .hero h1 .accent,
       .stat-num em {
-        text-shadow: 0 0 30px rgba(129, 140, 248, 0.4);
+        text-shadow: 0 0 30px rgba(220, 126, 95, 0.4);
       }
 
       /* ============ SCROLL PROGRESS BAR ============ */
@@ -1095,7 +1099,7 @@
       /* ============ WHATSAPP FLOATING BUTTON ============ */
       .whatsapp-btn {
         position: fixed;
-        bottom: 1.8rem;
+        bottom: 6rem;
         left: 1.8rem;
         z-index: 150;
         width: 56px;
@@ -1343,10 +1347,10 @@
     <div class="picker" id="picker">
       <div class="picker-label">Palette</div>
       <div
-        class="swatch active"
+        class="swatch"
         data-palette="indigo"
         style="background: linear-gradient(135deg, #818cf8, #08080d)"
-        title="Indigo (current)"
+        title="Indigo"
       ></div>
       <div
         class="swatch"
@@ -1383,12 +1387,6 @@
         data-palette="phosphor"
         style="background: linear-gradient(135deg, #39ff14, #000000)"
         title="Phosphor (CRT)"
-      ></div>
-      <div
-        class="swatch"
-        data-palette="orange"
-        style="background: linear-gradient(135deg, #ff6b35, #0a0a0a)"
-        title="Coral Orange"
       ></div>
       <div
         class="swatch"
@@ -1437,6 +1435,12 @@
         data-palette="terracotta"
         style="background: linear-gradient(135deg, #dc7e5f, #1a0e1f)"
         title="Terracotta (Lebanese)"
+      ></div>
+      <div
+        class="swatch active"
+        data-palette="orange"
+        style="background: linear-gradient(135deg, #ff6b35, #0a0a0a)"
+        title="Coral Orange (current)"
       ></div>
     </div>
 
@@ -1640,110 +1644,51 @@
         <h2 class="reveal reveal-delay-1">Recent <em>projects</em>.</h2>
       </div>
       <div class="projects-grid">
-        <div class="project reveal" style="--c1: #ff6b35; --c2: #c4421a">
-          <div class="project-visual">
-            <svg class="project-shape" viewBox="0 0 200 200">
-              <circle
-                cx="100"
-                cy="100"
-                r="70"
-                fill="none"
-                stroke="rgba(255,255,255,0.4)"
-                stroke-width="1"
-              />
-              <circle cx="100" cy="100" r="50" fill="rgba(255,255,255,0.15)" />
-              <circle cx="100" cy="100" r="30" fill="rgba(255,255,255,0.3)" />
-            </svg>
-          </div>
+        <div class="project reveal">
+          <img
+            class="project-image"
+            src="project-1-saas.webp"
+            alt="SaaS dashboard"
+            loading="lazy"
+          />
           <div class="project-info">
-            <div class="project-tag">2025 &mdash; SaaS Platform</div>
+            <div class="project-tag">2026 &mdash; SaaS Platform</div>
             <div class="project-title">Scalable <em>SaaS</em> dashboard</div>
           </div>
         </div>
-        <div
-          class="project reveal reveal-delay-1"
-          style="--c1: #1a3a5c; --c2: #0a1a2e"
-        >
-          <div class="project-visual">
-            <svg class="project-shape" viewBox="0 0 200 200">
-              <rect
-                x="40"
-                y="40"
-                width="120"
-                height="120"
-                fill="none"
-                stroke="rgba(255,255,255,0.4)"
-                stroke-width="1"
-              />
-              <rect
-                x="60"
-                y="60"
-                width="80"
-                height="80"
-                fill="rgba(255,255,255,0.15)"
-                transform="rotate(45 100 100)"
-              />
-              <rect
-                x="80"
-                y="80"
-                width="40"
-                height="40"
-                fill="rgba(255,255,255,0.4)"
-              />
-            </svg>
-          </div>
+        <div class="project reveal reveal-delay-1">
+          <img
+            class="project-image"
+            src="project-2-mobile.webp"
+            alt="Mobile app"
+            loading="lazy"
+          />
           <div class="project-info">
-            <div class="project-tag">2025 &mdash; Mobile</div>
+            <div class="project-tag">2026 &mdash; Mobile</div>
             <div class="project-title">Cross-platform <em>mobile app</em></div>
           </div>
         </div>
-        <div class="project reveal" style="--c1: #2d4a2b; --c2: #1a2e18">
-          <div class="project-visual">
-            <svg class="project-shape" viewBox="0 0 200 200">
-              <polygon
-                points="100,30 170,160 30,160"
-                fill="none"
-                stroke="rgba(255,255,255,0.4)"
-                stroke-width="1"
-              />
-              <polygon
-                points="100,60 145,140 55,140"
-                fill="rgba(255,255,255,0.15)"
-              />
-              <polygon
-                points="100,90 120,125 80,125"
-                fill="rgba(255,255,255,0.4)"
-              />
-            </svg>
-          </div>
+        <div class="project reveal">
+          <img
+            class="project-image"
+            src="project-3-ai.webp"
+            alt="AI assistant"
+            loading="lazy"
+          />
           <div class="project-info">
-            <div class="project-tag">2024 &mdash; AI</div>
+            <div class="project-tag">2025 &mdash; AI</div>
             <div class="project-title">RAG-powered <em>assistant</em></div>
           </div>
         </div>
-        <div
-          class="project reveal reveal-delay-1"
-          style="--c1: #5c1a3a; --c2: #2e0a1f"
-        >
-          <div class="project-visual">
-            <svg class="project-shape" viewBox="0 0 200 200">
-              <circle
-                cx="100"
-                cy="100"
-                r="60"
-                fill="none"
-                stroke="rgba(255,255,255,0.4)"
-                stroke-width="1"
-              />
-              <path
-                d="M 40 100 Q 100 40 160 100 Q 100 160 40 100"
-                fill="rgba(255,255,255,0.15)"
-              />
-              <circle cx="100" cy="100" r="20" fill="rgba(255,255,255,0.5)" />
-            </svg>
-          </div>
+        <div class="project reveal reveal-delay-1">
+          <img
+            class="project-image"
+            src="project-4-web.webp"
+            alt="Web platform"
+            loading="lazy"
+          />
           <div class="project-info">
-            <div class="project-tag">2024 &mdash; Web Platform</div>
+            <div class="project-tag">2025 &mdash; Web Platform</div>
             <div class="project-title">High-traffic <em>web</em> platform</div>
           </div>
         </div>
@@ -1763,6 +1708,8 @@
         </h2>
         <a
           href="mailto:majdwalidharb@gmail.com"
+          target="_blank"
+          rel="noopener"
           class="cta-button reveal reveal-delay-2"
           >Start a Conversation →</a
         >
@@ -1778,7 +1725,9 @@
           rel="noopener"
           >LinkedIn</a
         >
-        <a href="mailto:majdwalidharb@gmail.com">Email</a>
+        <a href="mailto:majdwalidharb@gmail.com" target="_blank" rel="noopener"
+          >Email</a
+        >
         <a href="https://wa.me/96176146767" target="_blank" rel="noopener"
           >WhatsApp</a
         >
@@ -2100,7 +2049,7 @@
       // ===== THREE.JS 3D BACKGROUND =====
       const canvas = document.getElementById("three-canvas");
       const scene = new THREE.Scene();
-      scene.fog = new THREE.Fog(0x08080d, 5, 25);
+      scene.fog = new THREE.Fog(0x1a0e1f, 5, 25);
 
       const camera = new THREE.PerspectiveCamera(
         60,
@@ -2117,7 +2066,7 @@
       });
       renderer.setSize(window.innerWidth, window.innerHeight);
       renderer.setPixelRatio(Math.min(window.devicePixelRatio, 2));
-      renderer.setClearColor(0x08080d, 1);
+      renderer.setClearColor(0x1a0e1f, 1);
 
       // ===== 3D NETWORK GRAPH (hero element) =====
       // A cluster of nodes connected by glowing edges — speaks "software engineer"
@@ -2130,8 +2079,8 @@
 
       const nodeGeo = new THREE.SphereGeometry(0.06, 16, 16);
       const nodeMat = new THREE.MeshStandardMaterial({
-        color: 0x818cf8,
-        emissive: 0x818cf8,
+        color: 0xdc7e5f,
+        emissive: 0xdc7e5f,
         emissiveIntensity: 0.8,
         metalness: 0.4,
         roughness: 0.3,
@@ -2158,7 +2107,7 @@
       // Build edges: each node connects to its 2-3 nearest neighbors
       const edges = [];
       const edgeMatBase = new THREE.LineBasicMaterial({
-        color: 0x818cf8,
+        color: 0xdc7e5f,
         transparent: true,
         opacity: 0.35,
       });
@@ -2208,7 +2157,7 @@
 
       // ===== FLOATING CODE SYMBOLS =====
       // Create texture-based sprites for code symbols
-      function makeSymbolTexture(symbol, color = "#818cf8") {
+      function makeSymbolTexture(symbol, color = "#dc7e5f") {
         const canvas = document.createElement("canvas");
         canvas.width = 256;
         canvas.height = 256;
@@ -2242,7 +2191,7 @@
 
       for (let i = 0; i < 14; i++) {
         const symbol = codeSymbols[i % codeSymbols.length];
-        const color = i % 3 === 0 ? "#e2e8f0" : "#818cf8";
+        const color = i % 3 === 0 ? "#f0e4d0" : "#dc7e5f";
         const texture = makeSymbolTexture(symbol, color);
         const mat = new THREE.SpriteMaterial({
           map: texture,
@@ -2280,7 +2229,7 @@
         new THREE.BufferAttribute(positions, 3),
       );
       const particlesMat = new THREE.PointsMaterial({
-        color: 0x818cf8,
+        color: 0xdc7e5f,
         size: 0.02,
         transparent: true,
         opacity: 0.5,
@@ -2291,8 +2240,8 @@
       // ===== CURSOR-FOLLOWING ORB =====
       const cursorOrbGeo = new THREE.SphereGeometry(0.18, 32, 32);
       const cursorOrbMat = new THREE.MeshStandardMaterial({
-        color: 0x818cf8,
-        emissive: 0x818cf8,
+        color: 0xdc7e5f,
+        emissive: 0xdc7e5f,
         emissiveIntensity: 0.6,
         metalness: 0.5,
         roughness: 0.2,
@@ -2306,7 +2255,7 @@
       // Soft glow halo around the orb
       const cursorGlowGeo = new THREE.SphereGeometry(0.32, 32, 32);
       const cursorGlowMat = new THREE.MeshBasicMaterial({
-        color: 0x818cf8,
+        color: 0xdc7e5f,
         transparent: true,
         opacity: 0.15,
       });
@@ -2326,13 +2275,13 @@
 
       // Lighting
       scene.add(new THREE.AmbientLight(0xffffff, 0.3));
-      const keyLight = new THREE.DirectionalLight(0x818cf8, 1.2);
+      const keyLight = new THREE.DirectionalLight(0xdc7e5f, 1.2);
       keyLight.position.set(5, 5, 5);
       scene.add(keyLight);
       const fillLight = new THREE.DirectionalLight(0xffffff, 0.5);
       fillLight.position.set(-5, -2, 3);
       scene.add(fillLight);
-      const rimLight = new THREE.PointLight(0x818cf8, 1, 15);
+      const rimLight = new THREE.PointLight(0xdc7e5f, 1, 15);
       rimLight.position.set(-3, 2, -2);
       scene.add(rimLight);
 
@@ -2501,7 +2450,7 @@
         },
       };
 
-      let currentPalette = "indigo";
+      let currentPalette = "terracotta";
 
       function applyPalette(name) {
         const p = palettes[name];
