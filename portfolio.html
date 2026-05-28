@@ -4,6 +4,11 @@
     <meta charset="UTF-8" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>Majd Harb - Full-Stack Software Engineer</title>
+    <link
+      rel="icon"
+      type="image/svg+xml"
+      href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'%3E%3Crect width='32' height='32' rx='6' fill='%231a0e1f'/%3E%3Cg fill='none' stroke='%23dc7e5f' stroke-width='2.5' stroke-linecap='round' stroke-linejoin='round'%3E%3Cpolyline points='11,11 6,16 11,21'/%3E%3Cpolyline points='21,11 26,16 21,21'/%3E%3Cline x1='19' y1='9' x2='13' y2='23'/%3E%3C/g%3E%3C/svg%3E"
+    />
     <link rel="preconnect" href="https://fonts.googleapis.com" />
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
     <link
@@ -23,11 +28,6 @@
         --font-display: "Space Mono", monospace;
         --font-body: "Inter", sans-serif;
         --font-mono: "JetBrains Mono", monospace;
-      }
-
-      /* Always-on terminal aesthetic (kept as class for selector reuse) */
-      body {
-        /* terminal aesthetic baked in */
       }
 
       *,
@@ -556,6 +556,100 @@
       .project-title em {
         font-style: italic;
       }
+      .project-stack {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.4rem;
+        margin-top: 1rem;
+      }
+      .project-stack span {
+        font-family: var(--font-mono);
+        font-size: 0.62rem;
+        letter-spacing: 0.08em;
+        padding: 0.25rem 0.55rem;
+        border: 1px solid var(--border);
+        border-radius: 3px;
+        color: var(--muted);
+        background: rgba(10, 10, 10, 0.5);
+      }
+
+      /* ============ TECH STACK ============ */
+      .tech {
+        flex-direction: column;
+      }
+      .tech-header {
+        max-width: 1400px;
+        margin: 0 auto 4rem;
+        width: 100%;
+      }
+      .tech h2 {
+        font-family: var(--font-display);
+        font-size: clamp(2.5rem, 7vw, 5.5rem);
+        font-weight: 300;
+        line-height: 1;
+        letter-spacing: -0.03em;
+      }
+      .tech h2 em {
+        font-style: italic;
+        color: var(--primary);
+      }
+      .tech-grid {
+        max-width: 1400px;
+        margin: 0 auto;
+        width: 100%;
+      }
+      .tech-row {
+        display: grid;
+        grid-template-columns: 180px 1fr;
+        gap: 2.5rem;
+        padding: 2rem 0;
+        border-top: 1px solid var(--border);
+        align-items: start;
+      }
+      .tech-row:last-child {
+        border-bottom: 1px solid var(--border);
+      }
+      .tech-cat {
+        font-family: var(--font-mono);
+        font-size: 0.72rem;
+        letter-spacing: 0.22em;
+        text-transform: uppercase;
+        color: var(--primary);
+        padding-top: 0.5rem;
+      }
+      .tech-tags {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 0.5rem;
+      }
+      .tech-tag {
+        font-family: var(--font-mono);
+        font-size: 0.78rem;
+        padding: 0.45rem 0.85rem;
+        border: 1px solid var(--border);
+        border-radius: 4px;
+        color: var(--text);
+        background: rgba(255, 255, 255, 0.02);
+        transition:
+          border-color 0.3s ease,
+          color 0.3s ease,
+          transform 0.3s ease;
+      }
+      .tech-tag:hover {
+        border-color: var(--primary);
+        color: var(--primary);
+        transform: translateY(-2px);
+      }
+      @media (max-width: 768px) {
+        .tech-row {
+          grid-template-columns: 1fr;
+          gap: 1rem;
+          padding: 1.5rem 0;
+        }
+        .tech-cat {
+          padding-top: 0;
+        }
+      }
 
       .cta {
         flex-direction: column;
@@ -663,60 +757,6 @@
         z-index: 50;
         opacity: 0.04;
         background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 200 200' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
-      }
-
-      /* ============ MARQUEE ============ */
-      .marquee {
-        position: relative;
-        z-index: 10;
-        background: var(--bg);
-        border-top: 1px solid var(--border);
-        border-bottom: 1px solid var(--border);
-        overflow: hidden;
-        padding: 2.5rem 0;
-        white-space: nowrap;
-      }
-      .marquee-track {
-        display: inline-flex;
-        align-items: center;
-        gap: 3rem;
-        animation: scroll-marquee 35s linear infinite;
-      }
-      .marquee-item {
-        font-family: var(--font-display);
-        font-size: clamp(2.5rem, 6vw, 5rem);
-        font-weight: 300;
-        letter-spacing: -0.03em;
-        color: var(--text);
-        display: inline-flex;
-        align-items: center;
-        gap: 3rem;
-      }
-      .marquee-item em {
-        font-style: italic;
-        color: var(--primary);
-      }
-      .marquee-star {
-        color: var(--primary);
-        font-size: 0.6em;
-        display: inline-block;
-        animation: spin 8s linear infinite;
-      }
-      @keyframes scroll-marquee {
-        0% {
-          transform: translateX(0);
-        }
-        100% {
-          transform: translateX(-50%);
-        }
-      }
-      @keyframes spin {
-        from {
-          transform: rotate(0deg);
-        }
-        to {
-          transform: rotate(360deg);
-        }
       }
 
       /* ============ COLOR PICKER PANEL ============ */
@@ -950,13 +990,6 @@
       .hero h1 .outline {
         -webkit-text-stroke: 1px var(--text);
       }
-      .marquee-item {
-        letter-spacing: -0.01em;
-      }
-      .marquee-item em {
-        font-style: normal;
-        font-weight: 700;
-      }
       .service-title em,
       .about h2 em,
       .services h2 em,
@@ -1187,8 +1220,8 @@
         justify-content: center;
         flex-direction: column;
         transition:
-          opacity 0.8s ease 0.3s,
-          visibility 0.8s ease 0.3s;
+          opacity 0.6s ease 0.1s,
+          visibility 0.6s ease 0.1s;
       }
       .intro.hidden {
         opacity: 0;
@@ -1245,7 +1278,7 @@
         bottom: 0;
         width: 0%;
         background: var(--primary);
-        animation: intro-fill 1.8s cubic-bezier(0.16, 1, 0.3, 1) forwards;
+        animation: intro-fill 1.1s cubic-bezier(0.16, 1, 0.3, 1) forwards;
       }
       @keyframes intro-fill {
         to {
@@ -1454,6 +1487,7 @@
       <ul class="nav-links">
         <li><a href="#about" data-section="about">About</a></li>
         <li><a href="#services" data-section="services">Services</a></li>
+        <li><a href="#stack" data-section="stack">Stack</a></li>
         <li><a href="#work" data-section="work">Work</a></li>
         <li><a href="#contact" data-section="contact">Contact</a></li>
       </ul>
@@ -1466,6 +1500,7 @@
     <div class="mobile-menu" id="mobile-menu">
       <a href="#about">About</a>
       <a href="#services">Services</a>
+      <a href="#stack">Stack</a>
       <a href="#work">Work</a>
       <a href="#contact">Contact</a>
       <div class="mobile-menu-decor">Majd Harb - 2026</div>
@@ -1483,14 +1518,14 @@
         ></span>
       </h1>
       <p class="hero-sub reveal reveal-delay-2">
-        I design and build web, mobile, and AI-driven systems &mdash; from REST
-        APIs and SaaS dashboards to React Native apps and RAG agents. Code that
+        I design and build web, mobile, and AI-driven systems, from REST APIs
+        and SaaS dashboards to React Native apps and RAG agents. Code that
         performs at scale. Products that ship on time.
       </p>
       <div class="hero-meta reveal reveal-delay-3">
-        <div>Based in<span>Metn, Lebanon</span></div>
         <div>Experience<span>5+ Years</span></div>
-        <div>Focus<span>Full-Stack &amp; AI</span></div>
+        <div>Focus<span>Full-Stack &amp; AI &amp; Mobile</span></div>
+        <!-- <div>Stack<span>Clojure · React · Node</span></div> -->
       </div>
       <div class="scroll-indicator">Scroll</div>
     </section>
@@ -1504,7 +1539,7 @@
             ><span class="terminal-label-path">cat ~/about</span>
           </div>
           <h2 class="reveal reveal-delay-1">
-            I build software that <em>scales</em> &mdash; and businesses
+            I build software that <em>scales</em>, and that businesses
             <em>trust.</em>
           </h2>
         </div>
@@ -1514,14 +1549,14 @@
             systems used by
             <em style="color: var(--primary); font-style: normal"
               >hundreds of thousands of users</em
-            >. I lead features end-to-end across web, mobile, and backend
-            &mdash; from API architecture to production releases on App Store
-            and Google Play.
+            >. I lead features end-to-end across web, mobile, and backend, from
+            API architecture to production releases on App Store and Google
+            Play.
           </p>
           <p class="reveal reveal-delay-2">
             Beyond my full-time work, I take on select freelance projects for
             founders, agencies, and businesses that care about craft. Every line
-            of code, every transition, every pixel &mdash; deliberate.
+            of code, every transition, every pixel. Deliberate.
           </p>
           <div class="stats">
             <div class="stat reveal reveal-delay-3">
@@ -1540,41 +1575,6 @@
         </div>
       </div>
     </section>
-
-    <!-- MARQUEE -->
-    <div class="marquee" aria-hidden="true">
-      <div class="marquee-track">
-        <span class="marquee-item"
-          >Available for <em>freelance</em>
-          <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >Web &amp; <em>mobile</em> <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >AI &amp; <em>automation</em>
-          <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >Based in <em>Lebanon</em> <span class="marquee-star">✦</span></span
-        >
-        <!-- Duplicate for seamless loop -->
-        <span class="marquee-item"
-          >Available for <em>freelance</em>
-          <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >Web &amp; <em>mobile</em> <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >AI &amp; <em>automation</em>
-          <span class="marquee-star">✦</span></span
-        >
-        <span class="marquee-item"
-          >Based in <em>Lebanon</em> <span class="marquee-star">✦</span></span
-        >
-      </div>
-    </div>
 
     <section class="services" id="services">
       <div class="services-header">
@@ -1634,11 +1634,89 @@
       </div>
     </section>
 
+    <section class="tech" id="stack">
+      <div class="tech-header">
+        <div class="section-label reveal">
+          <span class="terminal-label-prefix">$</span
+          ><span class="terminal-label-num">03 - Stack</span
+          ><span class="terminal-label-path">cat ~/stack</span>
+        </div>
+        <h2 class="reveal reveal-delay-1">Tech <em>stack</em>.</h2>
+      </div>
+      <div class="tech-grid">
+        <div class="tech-row reveal">
+          <div class="tech-cat">Languages</div>
+          <div class="tech-tags">
+            <span class="tech-tag">JavaScript</span>
+            <span class="tech-tag">Clojure</span>
+            <span class="tech-tag">ClojureScript</span>
+            <span class="tech-tag">Python</span>
+            <span class="tech-tag">Java</span>
+            <span class="tech-tag">Kotlin</span>
+            <span class="tech-tag">PHP</span>
+            <span class="tech-tag">Dart</span>
+          </div>
+        </div>
+        <div class="tech-row reveal">
+          <div class="tech-cat">Frontend</div>
+          <div class="tech-tags">
+            <span class="tech-tag">React</span>
+            <span class="tech-tag">Next.js</span>
+            <span class="tech-tag">Vue.js</span>
+            <span class="tech-tag">React Admin</span>
+            <span class="tech-tag">Material UI</span>
+            <span class="tech-tag">Bootstrap</span>
+            <span class="tech-tag">Vuetify</span>
+          </div>
+        </div>
+        <div class="tech-row reveal">
+          <div class="tech-cat">Backend</div>
+          <div class="tech-tags">
+            <span class="tech-tag">Node.js</span>
+            <span class="tech-tag">Spring Boot</span>
+            <span class="tech-tag">Luminus</span>
+            <span class="tech-tag">REST APIs</span>
+            <span class="tech-tag">OAuth</span>
+            <span class="tech-tag">Background Jobs</span>
+          </div>
+        </div>
+        <div class="tech-row reveal">
+          <div class="tech-cat">Mobile</div>
+          <div class="tech-tags">
+            <span class="tech-tag">React Native</span>
+            <span class="tech-tag">Expo</span>
+            <span class="tech-tag">Flutter</span>
+            <span class="tech-tag">Ionic</span>
+          </div>
+        </div>
+        <div class="tech-row reveal">
+          <div class="tech-cat">Databases</div>
+          <div class="tech-tags">
+            <span class="tech-tag">MySQL</span>
+            <span class="tech-tag">MongoDB</span>
+            <span class="tech-tag">Neo4j</span>
+          </div>
+        </div>
+        <div class="tech-row reveal">
+          <div class="tech-cat">Infrastructure</div>
+          <div class="tech-tags">
+            <span class="tech-tag">AWS</span>
+            <span class="tech-tag">Firebase</span>
+            <span class="tech-tag">Docker</span>
+            <span class="tech-tag">Linux</span>
+            <span class="tech-tag">Nginx</span>
+            <span class="tech-tag">GitHub Actions</span>
+            <span class="tech-tag">Bash</span>
+          </div>
+        </div>
+      </div>
+    </section>
+
     <section class="projects" id="work">
       <div class="projects-header">
         <div class="section-label reveal">
           <span class="terminal-label-prefix">$</span
-          ><span class="terminal-label-num">03 - Selected Work</span
+          ><span class="terminal-label-num">04 - Selected Work</span
           ><span class="terminal-label-path">ls ~/work</span>
         </div>
         <h2 class="reveal reveal-delay-1">Recent <em>projects</em>.</h2>
@@ -1652,8 +1730,12 @@
             loading="lazy"
           />
           <div class="project-info">
-            <div class="project-tag">2026 &mdash; SaaS Platform</div>
+            <div class="project-tag">2026 · SaaS Platform</div>
             <div class="project-title">Scalable <em>SaaS</em> dashboard</div>
+            <div class="project-stack">
+              <span>React</span><span>Next.js</span><span>Node</span
+              ><span>MySQL</span><span>AWS</span>
+            </div>
           </div>
         </div>
         <div class="project reveal reveal-delay-1">
@@ -1664,8 +1746,12 @@
             loading="lazy"
           />
           <div class="project-info">
-            <div class="project-tag">2026 &mdash; Mobile</div>
+            <div class="project-tag">2026 · Mobile</div>
             <div class="project-title">Cross-platform <em>mobile app</em></div>
+            <div class="project-stack">
+              <span>React Native</span><span>Expo</span><span>Firebase</span
+              ><span>REST</span>
+            </div>
           </div>
         </div>
         <div class="project reveal">
@@ -1676,8 +1762,12 @@
             loading="lazy"
           />
           <div class="project-info">
-            <div class="project-tag">2025 &mdash; AI</div>
+            <div class="project-tag">2025 · AI</div>
             <div class="project-title">RAG-powered <em>assistant</em></div>
+            <div class="project-stack">
+              <span>Python</span><span>Node</span><span>Neo4j</span
+              ><span>REST</span>
+            </div>
           </div>
         </div>
         <div class="project reveal reveal-delay-1">
@@ -1688,8 +1778,12 @@
             loading="lazy"
           />
           <div class="project-info">
-            <div class="project-tag">2025 &mdash; Web Platform</div>
+            <div class="project-tag">2025 · Web Platform</div>
             <div class="project-title">High-traffic <em>web</em> platform</div>
+            <div class="project-stack">
+              <span>Vue.js</span><span>Node</span><span>MySQL</span
+              ><span>Docker</span><span>Nginx</span>
+            </div>
           </div>
         </div>
       </div>
@@ -1699,7 +1793,7 @@
       <div class="cta-content">
         <div class="section-label reveal" style="justify-content: center">
           <span class="terminal-label-prefix">$</span
-          ><span class="terminal-label-num">04 - Let's Talk</span
+          ><span class="terminal-label-num">05 - Let's Talk</span
           ><span class="terminal-label-path">./contact.sh</span>
         </div>
         <h2 class="reveal reveal-delay-1">
@@ -1717,7 +1811,7 @@
     </section>
 
     <footer>
-      <div>© 2026 Majd Harb &mdash; Built from scratch</div>
+      <div>© 2026 Majd Harb · Built from scratch</div>
       <div style="display: flex; gap: 2rem">
         <a
           href="https://linkedin.com/in/majd-harb"
@@ -1971,8 +2065,8 @@
           intro.classList.add("hidden");
           document.body.classList.remove("intro-active");
           // Kick off the typewriter once the page is revealed
-          setTimeout(() => runTypewriter(), 400);
-        }, 2000);
+          setTimeout(() => runTypewriter(), 250);
+        }, 1200);
       });
 
       // ===== SCROLL PROGRESS BAR =====
